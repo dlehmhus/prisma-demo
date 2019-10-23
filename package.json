@@ -1,0 +1,33 @@
+{
+  "name": "typescript-graphql",
+  "scripts": {
+    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
+    "seed": "ts-node prisma/seed.ts",
+    "postinstall": "prisma2 generate"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "express": "^4.17.1",
+    "graphql-shield": "^6.1.0",
+    "graphql-upload": "^8.1.0",
+    "graphql-yoga": "^1.18.3",
+    "jsonwebtoken": "^8.5.1",
+    "mkdirp": "^0.5.1",
+    "nexus": "^0.12.0-beta.14",
+    "nexus-prisma": "^0.5.0",
+    "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.1",
+    "@types/graphql-upload": "^8.0.3",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/mkdirp": "^0.5.2",
+    "@types/node": "10.14.9",
+    "@types/shortid": "0.0.29",
+    "prisma2": "^2.0.0-preview014.2",
+    "ts-node": "^8.4.1",
+    "ts-node-dev": "1.0.0-pre.40",
+    "typescript": "3.5.2"
+  }
+}

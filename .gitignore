@@ -1,0 +1,14 @@
+node_modules
+seed.ts
+migrations
+build
+generated
+uploads
+distr
+*.db
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+README.md

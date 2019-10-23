@@ -1,0 +1,97 @@
+datasource mysql {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+generator photon {
+  provider = "photonjs"
+}
+
+model User {
+  id       String @default(cuid()) @id @unique
+  email    String @unique
+  password String
+  name     String
+}
+
+model IngredientCategory {
+  id          String       @default(cuid()) @id @unique
+  position    Float        @default(0)
+  name        String?
+  ingredients Ingredient[] @relation(onDelete: CASCADE)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Ingredient {
+  id        String   @default(cuid()) @id @unique
+  position  Float    @default(0)
+  name      String
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ProductCategory {
+  id        String    @default(cuid()) @id @unique
+  position  Float     @default(0)
+  name      String
+  type      Type
+  products  Product[] @relation(onDelete: CASCADE)
+  thumbnail String
+  heroImage String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id          String       @default(cuid()) @id @unique
+  position    Float        @default(0)
+  name        String
+  description String?
+  image       String?
+  ingredients Ingredient[]
+  price       Float
+  size        Float?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model District {
+  id            String   @default(cuid()) @id @unique
+  position      Float    @default(0)
+  name          String
+  zipCode       Int
+  minOrderValue Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Store {
+  id        String     @default(cuid()) @id @unique
+  position  Float      @default(0)
+  name      String
+  open      Boolean    @default(false)
+  districts District[]
+  emails    String[]
+  contact   Contact
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Contact {
+  id        String @default(cuid()) @id @unique
+  firstName String
+  lastName  String
+  phone     String
+  email     String
+  street    String
+  zipCode   Int
+  city      String
+}
+
+enum Type {
+  MEAL
+  DRINK
+}
